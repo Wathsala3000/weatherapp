@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <!-- Favicons -->
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <meta name="theme-color" content="#712cf9">
+    <meta charset="UTF-8">
+
+    <title>Weather App</title>
+    <style>
+        .flexbox-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .title-block{
+            justify-content: center;
+        }
+        .app-title{
+            text-align: center;
+        }
+        .app-description{
+            flex-direction: row;
+            font-weight: normal;
+            font-size: 20px;
+        }
+        .weather-form{
+            margin-top:20px;
+        }
+        .hidden{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="flexbox-container">
+        <div class="title-block">
+            <div class="app-title">
+                <h1>Weather App</h1>
+            </div>
+            <p class="app-description">
+                This App will provide weather information of your selected location.
+            </p>
+        </div>
+        <div class="weather-form">
+                <label class="form-label">Location</label>
+            <form action="#" th:action="@{/getCurrentWeatherStatus}" th:object="${locationstatus}" method="get">
+                <select th:field="${Location}" class="form-select" id="locationselect" name="locationselect"
+                        aria-label="Default select example" onchange="locationSelect()" required>
+                    <option value="">Select</option>
+                    <option th:each="location : ${Location}"
+                            th:value="${location.Key}"
+                            th:text="${location.Name}"></option>
+                </select>
+                <input type="text" class="hidden" name="locationkey" id="locationkey">
+                <input type="text" class="hidden" name="location" id="location">
+                <button onclick="getCurrentWeather()" type="submit"> Get Current Weather</button>
+            </form>
+        </div>
+    </div>
+<script>
+     function locationSelect() {
+         var selectedValue = document.querySelector('#locationselect').value;
+         var selectedText = $("#locationselect").find(":selected").text()
+         $("#locationkey").val(selectedValue);
+         $("#location").val(selectedText);
+     }
+
+    function getCurrentWeather(){
+<!--        var selectedValue = document.querySelector('#locationkey').value;-->
+<!--        var selectedText = $("#locationkey").find(":selected").text()-->
+<!--        var url = "getCurrentWeatherStatus?locationkey="+ selectedValue +"&location="+selectedText;-->
+<!--        window.location.href= url;-->
+    }
+</script>
+</body>
+</html>

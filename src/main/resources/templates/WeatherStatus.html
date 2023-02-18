@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <!-- Favicons -->
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <style>
+        .flexbox-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .title-block{
+            justify-content: center;
+        }
+        .app-title{
+            text-align: center;
+        }
+        .app-description{
+            flex-direction: row;
+            font-weight: normal;
+            font-size: 20px;
+        }
+        .weatherstatus-form{
+            margin-top:20px;
+        }
+        .col1{
+            justify-content: flex-start;
+            width: 300px;
+        }
+        .row{
+            display:flex;
+            flex-flow: row nowrap;
+            width: 600px;
+        }
+        .titletext{
+            font-weight: 300;
+            font-size: 20px;
+        }
+        .datatext{
+            font-weight: 600;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="flexbox-container">
+    <div class="title-block">
+        <div class="app-title">
+            <h1>Weather App</h1>
+        </div>
+        <p class="app-description">
+            Current Location : <label th:text="${WeatherStatus.Location}"></label>
+        </p>
+        <p  th:field="${WeatherStatus.Location}"></p>
+    </div>
+    <div class="weatherstatus-form">
+        <div class="row">
+            <div class="col1">
+                <p class="titletext">Date & Time :</p>
+            </div>
+            <div class="col1">
+                <p class="datatext" th:text="${WeatherStatus.DateAndtime}"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <p class="titletext">Day/Night :</p>
+            </div>
+            <div class="col1">
+                <p class="datatext" th:text="${WeatherStatus.DayTime}"></p>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col1">
+            <p class="titletext">Weather :</p>
+        </div>
+        <div class="col1">
+            <p class="datatext" th:text="${WeatherStatus.WeatherText}"></p>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col1">
+                <p class="titletext">Temperature :</p>
+            </div>
+            <div class="col1">
+                <p class="datatext" th:text="${WeatherStatus.Temperature}"></p>
+            </div>
+        </div>
+        <div class="row">
+            <button onclick="getWeatherHome()" type="button">Weather Home</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+        function getWeatherHome(){
+            window.location.href= "/";
+        }
+</script>
+
+</html>
